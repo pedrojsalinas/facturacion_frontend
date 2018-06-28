@@ -1,0 +1,24 @@
+<mat-card>
+  <h2 class="mat-h2">Agregar cliente</h2>
+  <form class="example-container" [formGroup]="clienteForm" (ngSubmit) = "addCliente()">
+      <mat-form-field>
+        <input matInput placeholder="Cédula/Ruc" type="text" formControlName="id" >
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nombre" type="text" formControlName="nombre" >
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Apellido" type="text" formControlName="apellido" >
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Dirección" type="text" formControlName="direccion" >
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Teléfono"  type="text" formControlName="telefono">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Correo"  type="email" formControlName="email">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]='!clienteForm.valid'>Guardar</button>
+  </form>
+</mat-card>

@@ -1,0 +1,30 @@
+<h2 class="mat-h2">Agregar Producto</h2>
+<form class="example-container" [formGroup]="productoForm" (ngSubmit) = "addProducto()">
+    <mat-form-field>
+      <input matInput placeholder="Código" type="number" formControlName="codigo" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Nombre" type="text" formControlName="nombre" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Precio Compra" class="example-right-align" type="number" formControlName="precio_compra">
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput class="example-right-align" placeholder="Precio Venta" type="number" formControlName="precio_venta">
+        <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Stock" type="number" formControlName="stock" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Categoria" formControlName="categoria" >
+          <mat-option *ngFor='let categoria of categorias' [value]="categoria.id">{{categoria.nombre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]='!productoForm.valid'>Guardar</button>
+</form>

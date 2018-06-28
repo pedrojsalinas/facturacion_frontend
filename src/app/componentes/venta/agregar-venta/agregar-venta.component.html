@@ -1,0 +1,72 @@
+<div class="card">
+<mat-card >
+    <form class="form" >
+      <mat-form-field class="example-full-width" appearance="outline" >
+        <mat-label>Producto</mat-label>
+        <input type="text" placeholder="Ingrese o escanee un artículo o código de barras" aria-label="Number" matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+        (ngModelChange)="dataChanged($event)">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
+          <mat-option *ngFor="let producto of filteredProductos | async" [value]="producto" >
+           <span>{{ producto.nombre }} </span> |
+            <small>Precio: {{producto.precio_venta | currency}}</small>
+          </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+      <button type="button" mat-raised-button name="button" class="boton" color="primary">Ver Productos</button>
+    </form>
+  <mat-divider></mat-divider>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef >Nombre</th>
+      <td mat-cell *matCellDef="let detalles"> {{detalles.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef>Precio</th>
+      <td mat-cell *matCellDef="let detalles"> {{detalles.precio | currency}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+      <td mat-cell *matCellDef="let detalles"> {{detalles.cantidad}} </td>
+    </ng-container>
+    <ng-container matColumnDef="total" >
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let detalles">{{detalles.total | currency}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
+  </table>
+</mat-card>
+</div>
+<div class="card">
+  <mat-card>
+    <mat-form-field appearance="outline" class="form-cliente" *ngIf="isCliente">
+      <mat-label>Cliente</mat-label>
+      <input matInput placeholder="Ingrese nombre del cliente">
+    </mat-form-field>
+    <button type="button" mat-raised-button name="button" class="center" color="primary">Crear Cliente</button>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="div-center">
+        <p class="Total"><b>Subtotal</b></p>
+      </div>
+      <div class="div-center">
+        <p class="Total">{{subtotal | currency}}</p>
+      </div>
+      <div class="div-center">
+        <p class="Total"><b>IVA</b></p>
+      </div>
+      <div class="div-center">
+        <p class="Total">{{iva | currency}}</p>
+      </div>
+      <div class="div-center">
+        <p class="Total"><b>Total</b></p>
+      </div>
+      <div class="div-center">
+        <p class="Total">{{total | currency}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+<mat-icon>home</mat-icon>
+</div>

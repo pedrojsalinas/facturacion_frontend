@@ -1,0 +1,24 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 80%;
+  margin: auto;
+}
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+h2{
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2em;
+
+  margin: 1em 0 0 1em;
+}
